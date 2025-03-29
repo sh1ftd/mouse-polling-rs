@@ -9,7 +9,6 @@ use crossterm::{
     execute,
     terminal::{
         disable_raw_mode, enable_raw_mode, size, EnterAlternateScreen, LeaveAlternateScreen,
-        SetSize,
     },
 };
 use ratatui::prelude::*;
@@ -25,14 +24,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     enable_raw_mode()?;
     let mut stdout = io::stdout();
 
-    let initial_width = config::MIN_WINDOW_WIDTH.saturating_add(10);
-    let initial_height = config::MIN_WINDOW_HEIGHT.saturating_add(5);
-
-    execute!(
-        stdout,
-        EnterAlternateScreen,
-        SetSize(initial_width, initial_height)
-    )?;
+    execute!(stdout, EnterAlternateScreen,)?;
 
     let terminal = Terminal::new(CrosstermBackend::new(stdout))?;
 
@@ -63,6 +55,12 @@ fn run_app(
 ) -> io::Result<()> {
     let mut last_update = Instant::now();
     let mut last_activity_check = Instant::now();
+
+    // Force an initial render to properly size the UI at startup
+    {
+        let app_guard = app.lock().unwrap();
+        terminal.draw(|f| ui::ui(f, &app_guard))?;
+    }
 
     loop {
         let terminal_size = size()?;
