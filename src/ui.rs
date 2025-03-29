@@ -65,7 +65,7 @@ fn render_chart(f: &mut Frame, app: &App, area: Rect) {
     let data_points: Vec<_> = app.rate_history.iter().map(|&(x, y)| (x, y)).collect();
 
     let dataset = Dataset::default()
-        .marker(symbols::Marker::Braille)
+        .marker(symbols::Marker::Dot)
         .graph_type(GraphType::Line)
         .style(Style::default().fg(Color::Cyan))
         .data(&data_points);
