@@ -13,6 +13,7 @@ pub fn run_input_thread(app: Arc<Mutex<App>>) {
     let mut last_pos = (0, 0);
 
     loop {
+        // SAFETY: GetCursorPos is safe as we pass a properly initialized POINT struct to a valid pointer
         unsafe {
             let mut point = POINT::default();
             if GetCursorPos(&mut point).is_ok() {

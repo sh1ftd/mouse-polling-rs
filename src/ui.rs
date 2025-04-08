@@ -6,7 +6,7 @@ use ratatui::{
 
 use crate::{app::App, config};
 
-pub fn ui(f: &mut Frame, app: &App) {
+pub fn ui(f: &mut Frame<'_>, app: &App) {
     let terminal_area = f.area();
 
     let app_area = Rect::new(
@@ -45,14 +45,14 @@ pub fn ui(f: &mut Frame, app: &App) {
     render_stats(f, app, chunks[2]);
 }
 
-fn render_title(f: &mut Frame, area: Rect) {
+fn render_title(f: &mut Frame<'_>, area: Rect) {
     let title = Paragraph::new("Mouse Polling Rate Monitor (Press 'q' to quit)")
         .block(Block::default().borders(Borders::ALL))
         .alignment(Alignment::Center);
     f.render_widget(title, area);
 }
 
-fn render_chart(f: &mut Frame, app: &App, area: Rect) {
+fn render_chart(f: &mut Frame<'_>, app: &App, area: Rect) {
     if !app.is_initialized() {
         let init_message = Paragraph::new("Initializing...")
             .block(Block::default().title("Polling Rate").borders(Borders::ALL))
@@ -93,7 +93,7 @@ fn render_chart(f: &mut Frame, app: &App, area: Rect) {
     f.render_widget(chart, area);
 }
 
-fn render_stats(f: &mut Frame, app: &App, area: Rect) {
+fn render_stats(f: &mut Frame<'_>, app: &App, area: Rect) {
     let current_rate = app.calculate_current_rate();
     let avg_rate = app.calculate_avg_rate(5.0);
 
