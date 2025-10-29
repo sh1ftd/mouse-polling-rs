@@ -97,13 +97,11 @@ fn run_app(
             })?;
         }
 
-        if event::poll(config::POLLING_INTERVAL)? {
-            if let Event::Key(key) = event::read()? {
-                if key.code == KeyCode::Char('q') {
+        if event::poll(config::POLLING_INTERVAL)?
+            && let Event::Key(key) = event::read()?
+                && key.code == KeyCode::Char('q') {
                     return Ok(());
                 }
-            }
-        }
 
         thread::sleep(config::POLLING_INTERVAL);
     }

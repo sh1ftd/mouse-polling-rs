@@ -77,8 +77,8 @@ fn render_chart(f: &mut Frame<'_>, app: &App, area: Rect) {
     let chart = Chart::new(vec![dataset])
         .block(Block::default().title("Polling Rate").borders(Borders::ALL))
         .x_axis(Axis::default().bounds([x_min, x_max]).labels(vec![
-            Span::raw(format!("{:.1}s", x_min)),
-            Span::raw(format!("{:.1}s", x_max)),
+            Span::raw(format!("{x_min:.1}s")),
+            Span::raw(format!("{x_max:.1}s")),
         ]))
         .y_axis(
             Axis::default()
