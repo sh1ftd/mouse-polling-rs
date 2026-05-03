@@ -2,7 +2,7 @@ cargo-features = ["profile-rustflags"]
 
 [package]
     name = "mouse-polling-rs"
-    version = "0.1.3"
+    version = "0.1.4"
     edition = "2024"
     license = "MIT"
     authors = ["Shifty <contact@shifty.cloud>"]
@@ -29,10 +29,9 @@ cargo-features = ["profile-rustflags"]
     implicit_clone = "warn"
 
 [dependencies]
-    ratatui = "0.29.0"
+    ratatui = "0.30.0"
     crossterm = "0.29.0"
-    ctrlc = "3.4.6"
-    windows = { version = "0.61.1", features = [
+    windows = { version = "0.62.2", features = [
         "Win32_UI_WindowsAndMessaging",
     ] }
 

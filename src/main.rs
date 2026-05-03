@@ -8,7 +8,7 @@ use crossterm::{
     event::{self, Event, KeyCode},
     execute,
     terminal::{
-        disable_raw_mode, enable_raw_mode, size, EnterAlternateScreen, LeaveAlternateScreen,
+        EnterAlternateScreen, LeaveAlternateScreen, disable_raw_mode, enable_raw_mode, size,
     },
 };
 use ratatui::prelude::*;
@@ -99,9 +99,10 @@ fn run_app(
 
         if event::poll(config::POLLING_INTERVAL)?
             && let Event::Key(key) = event::read()?
-                && key.code == KeyCode::Char('q') {
-                    return Ok(());
-                }
+            && key.code == KeyCode::Char('q')
+        {
+            return Ok(());
+        }
 
         thread::sleep(config::POLLING_INTERVAL);
     }
