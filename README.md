@@ -23,10 +23,6 @@ cargo build --release
 
 ```
 
-## Usage
-
-Download from releases and run the executable.
-
 ## Credits
 
 Built with:
