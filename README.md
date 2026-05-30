@@ -16,12 +16,12 @@ A lightweight mouse polling rate monitor for Windows written in Rust.
 
 ## Building from Source
 
----bash
+```bash
 git clone https://github.com/sh1ftd/mouse-polling-rs.git
 cd mouse-polling-rs
 cargo build --release
 
----
+```
 
 ## Usage
 
